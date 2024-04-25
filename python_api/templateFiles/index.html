@@ -1,0 +1,44 @@
+{%extends "base.html" %}
+{%block content%}
+<div class="affiche">
+    <div class="titre">
+        <img src="{{ url_for('static', filename='img/OIG-removebg-preview.png') }}" width="20%" class="affiche-image"
+            alt="" srcset="">
+        <h1>Cart’Ondes</h1>
+        <h2>Projet exploratoire sur l'étude de l'exposition au Rayonnement Électromagnétique (REM) dans la ville
+            de Lyon</h2>
+    </div>
+
+</div>
+<div class="description">
+    <div class="container1">
+        <h3>
+            <a href="http://localhost:1234/informations" class="titre2">De quoi parle-t-on ?</a>
+        </h3>S'informer sur les <span class="surlignage">enjeux et problématiques</span> liés au REM, se documenter
+        sur le cycle de vie de la donnée
+        électromagnétique.
+    </div>
+    <div class="container2">
+        <h3>
+            <a href="http://localhost:1234/expositionTheorique" class="titre2">Exposition électromagnétique</a>
+        </h3><span class="surlignage">Visualisation de la localisation des sites
+            radioélectriques</span> dans
+        la ville de
+        Lyon, entièrement
+        paramétrable à partir des données
+        ANFR et IGN.
+    </div>
+    <div class="container3">
+
+        <a href="http://localhost:1234/expositionMesuree" class="titre2">
+            <h3>Balades électromagnétiques</h3>
+        </a>
+        Cartographie issue de <span class="surlignage">balades électromagnétiques</span> dans le quartier de la
+        Croix-Rousse informant sur
+        les différents niveaux de REM.
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,204 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="data/sidebar-v2-master/css/leaflet-sidebar.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart'Ondes - Exposition théorique</title>
+</head>
+
+<body> -->
+
+{%extends "base.html" %}
+{%block content%}
+
+<div id="sidebar" class="sidebar collapsed">
+    <!-- Nav tabs -->
+    <div class="sidebar-tabs">
+        <ul role="tablist">
+            <li><a href="#home" role="tab"><i class="fa fa-info"></i></a></li>
+            <li><a href="#antenne" role="tab"><i class="fa-solid fa-tower-cell"></i></a></li>
+            <li><a href="#habitation" role="tab"><i class="fa-solid fa-house-signal"></i></a></li>
+            <li><a href="#anfr" role="tab"><i class="fa-solid fa-link"></i></i></a></li>
+        </ul>
+    </div>
+
+    <!-- Tab panes -->
+    <div class="sidebar-content">
+        <div class="sidebar-pane" id="home">
+            <h1 class="sidebar-header">
+                Exposition électromagnétique
+                <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <p class="lorem">
+            <p class="lorem">
+                Cette interface est conçue pour la visualisation des (1) sites radioélectriques à proximité de votre
+                lieu de vie mais aussi (2) de l'influence des ces sites sur la population à proximité.
+            </p>
+
+            <p class="lorem">
+                Le deuxieme menu <i class="fa-solid fa-tower-cell"></i>, vous permet d'en apprendre plus sur la
+                localisation des
+                sites radioélectriques autour d'un point donné. Ce point est modifiable à tout instant et le rayon de
+                recherche autour de ce dernier est entièrement paramétrable.
+            </p>
+
+            <p class="lorem">
+                Le troisième menu <i class="fa-solid fa-house-signal"></i> permet de visualiser les résultats des
+                analyses dans le mode antenne. Dans ce menu, il existe également un menu permettant de paramétrer le
+                rayon de recherche autour d'une antenne.
+            </p>
+
+            <p class="lorem">
+                Le dernier menu <i class="fa-solid fa-link"></i> donne diverses informations sur la demande d'une mesure
+                <i>certifiée</i> par l'ANFR.
+            </p>
+        </div>
+        <div class="sidebar-pane" id="filtre">
+            <h1 class="sidebar-header">
+                Filtrer les données
+                <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <p>Couches actives</p>
+
+        </div>
+        <div class="sidebar-pane" id="antenne">
+            <h1 class="sidebar-header">
+                Mode antenne
+                <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+
+            <h3 style="margin-top: 10px;">Se localiser </h3>
+            <div class="option">
+                <div class="autocomplete-container" id="autocomplete-container"></div>
+                <button id="addMarkerBtn" class="marker-search"></button>
+                <button id="removeLayersBtn"></button>
+            </div>
+            <hr>
+            <h3>Ajuster le rayon</h3>
+            <div class="range-slider">
+                <input class="range-slider__range" id="filter-range" step="5" type="range" value="150" min="0"
+                    max="300">
+                <span class="range-slider__value">0</span>
+            </div>
+            <hr>
+            <h3>Répartition du nombre d'antennes par distance au centre</h3>
+            <div class="chart-container"><canvas class="filter-chart" id="myChart" width="380" height="300"></canvas>
+            </div>
+            <img src="../staticFiles/img/longueur.svg" height="100%" width="100%" alt="">
+
+            <p>Il y a <span id="total_site">0</span> sites et <span id="total_antenne">0</span> antennes dans un
+                rayon de <span id="rayon">150</span>
+                mètres.</p>
+            <p>Le site le plus proche se trouve à <span id="proximite">0</span> mètres et contient <span
+                    id="nb_antenne_proche">0</span> antennes.</p>
+            <hr>
+            <h3>Nombre d'antennes par sites</h3>
+
+            <div class="legende" style="border: 1px solid lightgray; padding: 10px;width: 95%">
+                <img src=" {{ url_for('static', filename='img/legende_antennes.svg') }}" alt="" height="100%"
+                    width="100%" srcset="">
+            </div>
+        </div>
+        <div class="sidebar-pane" id="habitation">
+            <h1 class="sidebar-header">
+                Mode habitation
+                <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <h3 style="margin-top: 10px;">Antenne sélectionnée n°<span id="id_site"></span></h3>
+            <hr>
+            <h3>Ajuster le rayon</h3>
+
+            <div class="range-slider 2">
+                <input class="range-slider__range 2" id="filter-range2" step="5" type="range" value="150" min="5"
+                    max="300">
+                <span class="range-slider__value 2" id="range-slider__value2">0</span>
+            </div>
+
+            <hr>
+            <h3>Population par classe d'âge dans le rayon du site radioélectrique</h3>
+
+            <div class="chart-container"><canvas class="filter-chart" id="myChart2" width="400" height="200"></canvas>
+            </div>
+            <hr>
+            <h3>Population par bâtiments</h3>
+            <div class="legende" style="border: 1px solid lightgray; padding: 10px;width: 95%;">
+                <img src=" {{ url_for('static', filename='img/legende.svg') }}" alt="" srcset="">
+            </div>
+        </div>
+
+        <div class="sidebar-pane" id="source">
+            <h1 class="sidebar-header">
+                Source
+                <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+
+            </h1>
+            <p class="siderbar-titre-liste">Bâtiments</p>
+            <ul>
+                <li>
+                    <a href="https://geoservices.ign.fr/documentation/donnees/vecteur/bdtopo">BD TOPO IGN</a>
+                </li>
+                <li>
+                    Population héritée des <a href="https://www.insee.fr/fr/statistiques/7655515">carreaux INSEE</a>
+                </li>
+                <li>
+
+                </li>
+            </ul>
+            <p class="siderbar-titre-liste">Antennes</p>
+        </div>
+        <div class="sidebar-pane" id="anfr">
+            <h1 class="sidebar-header">
+                Demander une mesure
+                <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+
+            <p><b>Toute personne peut faire mesurer l'exposition aux ondes électromagnétiques</b> aussi bien dans
+                les
+                locaux d'habitation que dans des lieux accessibles au public (parcs, commerces, établissement
+                recevant du public...). </p>
+            <p><b>Une opération de mesure dure
+                    entre une et trois heures.</b> Plusieurs types de mesures sont possibles, selon que l'on
+                souhaite
+                connaître l'exposition globale résultant de l'ensemble des sources environnantes ou une analyse plus
+                détaillée permettant de voir les contributions de ces différentes sources à l'exposition.</p>
+            <p style="margin-bottom: 0px;">Demander une mesure sur : <a href="https://mesures.anfr.fr/#/"
+                    target="_blank">https://mesures.anfr.fr/#/</a></p>
+
+            <img id="myImg"
+                src=" {{ url_for('static', filename='img/13192-4_4pages_Surveiller-mesurer-ondes-electromagnetiques_web_planches-2.png') }}"
+                style="width:100%;max-width:600px">
+            <div id="myModal" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="img01">
+                <div id="caption"></div>
+            </div> <i style="font-size: 14px;">Source :
+                <a href="https://www.anfr.fr/fileadmin/mediatheque/documents/expace/13192-4_4pages_Surveiller-mesurer-ondes-electromagnetiques_web_planches.pdf"
+                    target="_blank">https://www.anfr.fr/fileadmin/mediatheque/documents/expace/13192-4_4pages_Surveiller-mesurer-ondes-electromagnetiques_web_planches.pdf</a>
+            </i>
+        </div>
+    </div>
+
+</div>
+<div id="map" class="sidebar-map"></div>
+<!-- <script src="data/sidebar-v2-master/js/leaflet-sidebar.js"></script>
+    <script src="js/main.js"></script> -->
+<!-- <script src="js/addressAutocomplete.js"></script>
+    <script src="js/modal.js"></script> -->
+<script src=" {{ url_for('static', filename='static_theorique/js/main.js') }}"></script>
+<script src=" {{ url_for('static', filename='static_theorique/js/modal.js') }}"></script>
+<script src=" {{ url_for('static', filename='static_theorique/js/addressAutocomplete.js') }}"></script>
+
+{% endblock %}

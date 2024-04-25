@@ -1,0 +1,130 @@
+{% extends "base.html" %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" />
+<div id="sidebar" class="sidebar collapsed">
+  <!-- Nav tabs -->
+  <div class="sidebar-tabs">
+    <ul role="tablist">
+      <li>
+        <a href="#home" role="tab"><i class="fa fa-info"></i></a>
+      </li>
+      <li>
+        <a href="#profile" role="tab"><i class="fa fa-filter"></i></a>
+      </li>
+      {% if session['nom_utilisateur'] %}
+      <li>
+        <a href="#adddata" role="tab"><i class="fa fa-plus"></i></a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Nom d'utilisateur</label>
+          <input type="text" id="username" name="username" required autocomplete="current-password" />
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" required autocomplete="current-password" />
+        </div>
+        <button type="submit">Connexion</button>
+      </form>
+      <button id="logoutBtn">Déconnexion</button>
+
+      <div id="message"></div>
+    </div>
+  </div>
+
+  <!-- Tab panes -->
+  <div class="sidebar-content">
+    <div class="sidebar-pane" id="home">
+      <h1 class="sidebar-header">Balades électromagnétiques</h1>
+
+      <p class="lorem">
+        Cette interface est conçue pour la visualisation et l'exploration des
+        mesures réalisées sur les Champs Électromagnétiques (CEM). Nous vous
+        offrons un ensemble de fonctionnalités pour comprendre et analyser ces
+        données de manière simple.
+      </p>
+
+      <p class="lorem">
+        Le deuxième menu <i class="fa fa-filter"></i>, vous permet de filtrer
+        les données en fonction des histoires auxquelles elles sont associées.
+        Ce filtre vous permet de regrouper les mesures par contexte et de mieux
+        comprendre les variations des niveaux de CEM dans différents scénarios.
+      </p>
+
+      <p class="lorem">
+        En sélectionnant une histoire, l'interface génère automatiquement un
+        graphique détaillant les variations des mesures de CEM au fil du temps.
+        Cette fonctionnalité vous permet de comparer les niveaux de CEM
+        enregistrés et d'observer les variations entres les appareils utiliser.
+      </p>
+
+      <p class="lorem">
+        Pour une compréhension approfondie, il vous ait également presenter des
+        descriptions détaillées de chaque histoire associée aux mesures. Vous
+        pouvez accéder à des informations contextuelles sur les emplacements des
+        sites d'antennes et d'autres facteurs pertinents.
+      </p>
+    </div>
+
+    <div class="sidebar-pane" id="profile">
+      <h1 class="sidebar-header">
+        Filtres<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+      </h1>
+
+      <!-- <button id="applyFilterBtn" class="filter-button">Appliquer</button> -->
+      <button id="clearFilterBtn" class="filter-button">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="sidebar-pane" id="adddata">
+      <h1 class="sidebar-header">
+        Ajouter de nouvelles histoires<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+      </h1>
+      <div class="container">
+        <form id="fileUploadForm" method="POST" action="{{ url_for('addStory') }}">
+          <div class="form-group">
+            <label for="histoireName">Nom de l'histoire </label>
+            <input type="text" id="histoireName" name="histoireName" required />
+          </div>
+          <div class="form-group">
+            <label for="histoireDescription">Description de l'histoire </label>
+            <textarea id="histoireDescription" name="histoireDescription" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="fileInput">Sélectionner un fichier de mesure<span class="lorem">.kml ou .csv</span>
+            </label>
+            <input type="file" id="fileInput" name="fileInput" accept=".csv, .kml" required />
+          </div>
+
+          <div class="table-group">
+            <table id="dataTable">
+              <!-- Ici sera affichée la table des données kml -->
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="button-group">
+            <button type="submit" class="submit-btn">Ajouter</button>
+            <button type="reset" class="cancel-btn">Annuler</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="map" class="sidebar-map"></div>
+
+<!-- chargement des fichier Js -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='static_pratique/js/app.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,569 @@
+@font-face {
+    font-family: 'Inter';
+    /* Nom de la police */
+    src: url('/staticFiles/fonts/Inter-VariableFont_slnt-wght.ttf') format('truetype');
+    /* Chemin vers le fichier de police */
+    /* Vous pouvez également spécifier d'autres formats de police comme woff, woff2, etc., pour une meilleure compatibilité avec les navigateurs */
+}
+
+
+* {
+    font-family: 'Inter' !important;
+}
+
+#map {
+    height: calc(100vh - 60px);
+    width: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+.leaflet-marker-icon span {
+    font-weight: 700;
+    font-size: 18px !important;
+    color: white
+}
+
+/* Style des clusters */
+.marker-cluster-small {
+    background-color: rgba(214, 201, 255, 0.8) !important;
+}
+
+.marker-cluster-small div {
+    background-color: rgba(214, 201, 255, 0.8) !important;
+}
+
+.marker-cluster-medium {
+    background-color: rgba(136, 130, 255, 0.8) !important;
+}
+
+.marker-cluster-medium div {
+    background-color: rgba(136, 130, 255, 0.8) !important;
+}
+
+.marker-cluster-large {
+    background-color: rgba(54, 66, 179, 0.8) !important;
+}
+
+.marker-cluster-large div {
+    background-color: rgba(54, 66, 179, 0.8) !important;
+}
+
+.leaflet-tooltip {
+    background-color: white !important;
+}
+
+.leaflet-bottom .leaflet-control-scale{
+    margin-bottom: 10px !important;
+}
+
+.bandeau {
+    width: 100%;
+    height: 40px;
+    position: relative;
+}
+
+.affiche {
+    width: 100%;
+    height: 90vh;
+    position: relative;
+    background-image: linear-gradient(rgba(72, 69, 84, 0.8),
+            rgba(72, 69, 84, 0.8)), url(/staticFiles/img/bandeau.png);
+    text-align: center
+}
+
+.description {
+    width: 100%;
+    min-height: fit-content;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    justify-content: center;
+}
+
+.lancement {
+    width: 100%;
+    height: 100px;
+    border-bottom: 2px solid #484554;
+    position: relative;
+}
+
+.info {
+    width: 100%;
+    height: 250px;
+    background-color: #827bae;
+}
+
+.lancement-app {
+    padding: 13px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #ff6384;
+    width: fit-content;
+    border-radius: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    transition-property: background;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+}
+
+.app-button {
+    color: #ff6384;
+    font-weight: 500;
+    font-size: 17px;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.lancement-app:hover {
+    background-color: #ff6384;
+}
+
+.lancement-app:hover>.app-button {
+    color: white
+}
+
+h1 {
+    font-size: 96px;
+    color: white;
+    font-weight: 900;
+    text-align: center;
+    font-family: "Inter";
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 32px;
+    color: white;
+    font-family: "Inter";
+    font-weight: 500;
+    margin-top: 0;
+}
+
+h3 {
+    margin-top: 0
+}
+
+.titre {
+    position: absolute;
+    margin-left: 15%;
+    margin-right: 15%;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.container1,
+.container2,
+.container3 {
+    width: 33.33%;
+    max-width: 300px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-right: 1px solid black;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+}
+
+.container3 {
+    border: none
+}
+
+.titre2 {
+    color: black;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px
+}
+
+.titre2:hover {
+    color: #606060
+}
+
+::-moz-selection,
+::selection {
+    /* Code for Firefox */
+    background: #6bbaa3;
+    color: white;
+    text-decoration-color: white;
+
+}
+
+#geocode {
+    width: calc(100%);
+    grid-area: "geocode";
+    border: 1px solid lightgrey;
+    border-right: 0px;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    padding: 5px;
+    z-index: 1;
+    font-size: 14px;
+    font-style: italic;
+    box-sizing: content-box;
+}
+
+#geocode:focus {
+    outline: none;
+}
+
+.option {
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 1fr 35px 35px;
+    grid-template-areas:
+        " geocode recherche marker-search";
+}
+
+#recherche {
+    background: url("/staticFiles/img/search.svg") no-repeat scroll 0 0 transparent;
+    border-radius: 100px;
+    z-index: 2;
+    border: 1px solid lightgrey;
+    background-size: 20px;
+    background-color: rgb(250, 250, 250);
+    background-position: center;
+    padding: 15px;
+    grid-area: "recherche";
+}
+
+.marker-search {
+    background: url("/staticFiles/img/crosshair.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    font-weight: bold;
+    background-size: 20px;
+    background-color: rgb(250, 250, 250);
+    background-position: center;
+    border: 1px solid lightgrey;
+    border-radius: 100px;
+    margin-left: .2em;
+    padding: 15px;
+
+}
+
+.marker-search:hover {
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+}
+
+#recherche:hover {
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+}
+
+.surlignage {
+    font-style: italic;
+    font-weight: 700;
+    color: #6bbaa3;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}
+
+.leaflet-popup-content-wrapper {
+    overflow: scroll;
+}
+
+.control-window {
+    overflow: scroll;
+}
+
+.title {
+    color: black;
+    font-family: "Inter";
+    margin-bottom: 0;
+}
+
+.footer-modal {
+    font-size: 25px;
+}
+
+.sidebar-tabs>li.active,
+.sidebar-tabs>ul>li.active {
+    background-color: #6bbaa3 !important;
+}
+
+.sidebar-header {
+    background-color: #6bbaa3 !important;
+
+}
+
+.sidebar-carte {
+    border: 1px solid black;
+    min-height: fit-content;
+    height: 330px;
+}
+
+.siderbar-titre-liste {
+    font-weight: 700;
+}
+
+.select-layer {
+    margin: 5px;
+    border-radius: 4px;
+    border: 1px solid #dedede;
+    padding: 5px;
+}
+
+.select-layer li {
+    margin: 5px;
+    margin-left: 0px;
+    border-radius: 4px;
+    border-bottom: 1px solid #dedede;
+    padding: 5px;
+    padding-left: 0px;
+}
+
+#liste-layer {
+    list-style-type: none;
+    padding: 0
+}
+
+li {
+    list-style-type: none;
+}
+
+.filter-button {
+    padding: 5px;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    font-family: "Inter" !important;
+    background-color: #f5f5f5;
+}
+
+.filter-button:hover {
+    background-color: #dddddd;
+    border: 1px solid #b8b8b8;
+}
+
+.Antennes,
+.Batiments {
+    display: none;
+}
+
+.filtre-attribut {
+    width: fit-content
+}
+
+.filter-range {
+    width: 100%;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 5px !important;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
+}
+
+hr {
+    border: 1px solid #ebebeb
+}
+
+.range-slider {
+    width: 100%;
+}
+
+.range-slider__range {
+    -webkit-appearance: none;
+    width: calc(100% - (73px));
+    height: 10px;
+    border-radius: 5px;
+    background: #d7dcdf;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.range-slider__range::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #606060;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+}
+
+.range-slider__range::-webkit-slider-thumb:hover {
+    background: #ff6384;
+}
+
+.range-slider__range:active::-webkit-slider-thumb {
+    background: #ff6384;
+}
+
+.range-slider__range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: 0;
+    border-radius: 50%;
+    background: #606060;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+}
+
+.range-slider__range::-moz-range-thumb:hover {
+    background: #ff6384;
+}
+
+.range-slider__range:active::-moz-range-thumb {
+    background: #ff6384;
+}
+
+.range-slider__range:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px #ff6384;
+}
+
+.range-slider__value {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 3px;
+    background: #ff6384;
+    padding: 5px 10px;
+    margin-left: 8px;
+    font-weight: 600;
+}
+
+.range-slider__value:after {
+    position: absolute;
+    top: 8px;
+    left: -6px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-right: 7px solid #ff6384;
+    border-bottom: 7px solid transparent;
+    content: '';
+}
+
+::-moz-range-track {
+    background: #d7dcdf;
+    border: 0;
+}
+
+input::-moz-focus-inner,
+input::-moz-focus-outer {
+    border: 0;
+}
+
+.chart-container {
+    height: 200px;
+}
+
+
+#loginFormOverlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.loginForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.loginForm h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.loginForm label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.loginForm input[type="text"],
+.loginForm input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.loginForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.loginForm button:hover {
+    background-color: #45a049;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#navbar {
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: lightblue;
+    font-size: 1.1em;
+    color: #333;
+}
+
+#navbar-items {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+}
+
+.navbar-item {
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.navbar-item.login-logout {
+    margin-left: auto;
+    font-weight: bold;
+}
+
+.navbar-item a {
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+
+.navbar-item a:hover {
+    color: #fcfcfc;
+}
+
+#container {
+    margin: 20px 50px;
+}

@@ -1,0 +1,147 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="data/sidebar-v2-master/css/leaflet-sidebar.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart'Ondes - Exposition théorique</title>
+</head>
+
+<body> -->
+
+{%extends "base.html" %}
+{%block content%}
+
+
+<div class="page-container">
+    <div class="text-container">
+        <h1 class="titre-page">De quoi parle-t-on ?</h1>
+        <p>Les ondes électromagnétiques sont un sujet complexe compte tenu des enjeux liés à la santé. Dans cette partie
+            informative, nous allons essayer de vous donner tous les éléments nécessaires à la compréhension du sujet.
+        </p>
+        Pour plus d'informations, vous pouvez vous rapprocher de l'association <a href="https://www.sera.asso.fr/"
+            target="_blank">SERA</a> (Santé Environnement Rhône Alpes)
+        <h2 class="titre-page2">Qu'est-ce qu'une onde électromagnétique ?</h2>
+        <p>« Une onde électromagnétique est une catégorie d’ondes qui peut se déplacer dans un milieu de propagation
+            comme
+            le vide ou l’air, avec une vitesse avoisinant celle de la lumière, soit près de 300 000 kilomètres par
+            seconde.
+            Ces ondes sont par exemple produites par des charges électriques en mouvement. Elles correspondent aux
+            oscillations couplées d’un champ électrique et d’un champ magnétique, dont les amplitudes varient de façon
+            sinusoïdale au cours du temps.
+        <p>
+            <img src="../staticFiles/img/onde_radio.png" alt="" width="100%" srcset="">
+            <i class="img-text">V = Vitesse de déplacement de l'onde E = Champ électrique B = Champ magnétique ©
+                Emmanuel
+                Boutet/Wikimedia
+                Commons</i>
+        </p>
+        Les ondes électromagnétiques transportent de l’énergie mais elles sont aussi capables de transporter de
+        l’information. C’est pourquoi elles sont utilisées dans le domaine de la communication.
+        Concrètement, les ondes électromagnétiques servent à faire fonctionner les smartphones, les postes de radio, ou
+        encore sont utilisées pour faire des radiographies du corps humain. De même, la lumière visible est une onde
+        électromagnétique ; elle nous permet de voir les couleurs.
+        <p>Ces différentes ondes électromagnétiques se différencient et sont caractérisées par leur fréquence,
+            c’est-à-dire
+            le nombre d’oscillations en une seconde. La fréquence est exprimée en Hertz. Une autre caractéristique des
+            ondes
+            électromagnétiques est la longueur d’onde, c’est-à-dire la distance qui sépare deux oscillations de l'onde.
+            Elle
+            est inversement proportionnelle à la fréquence. »
+            <b>Source : CEA, 2023
+        </p></b>
+        </p>
+        <div class="img-container" style="text-align: center !important;"> <img
+                src="../staticFiles/img/normes_seuils.png" alt="" width="50%" srcset="">
+            <br>
+            <i class="img-text">Tableau récapitulatif des normes et seuils</i>
+        </div>
+        <h2 class="titre-page2">Les principaux acteurs</h2>
+        <h3>ANFR</h3>
+        <p>L’ANFR est un établissement public gérant l’ensemble des fréquences radioélectriques en France. Elle
+            surveille
+            l’exposition du public aux ondes et veille au respect des valeurs limites qui garantissent l’absence
+            d’effets
+            sur la santé ; elle s’assure également de la conformité des équipements radios et des terminaux disponibles
+            sur
+            le marché en procédant à des mesures de débit d’absorption spécifique (DAS) ; elle veille à la protection de
+            la
+            réception de la TNT et traite les réclamations</p>
+        <h3>Opérateur téléphonique</h3>
+        <p>Les 3 principaux français : Orange/ Bouygues, Free Illiade, SFR.
+            Un opérateur de communications électroniques est défini comme « une entreprise qui fournit ou est autorisée
+            à
+            fournir un réseau de communications public ou une ressource associée »
+        </p>
+        <h3>ANSES</h3>
+        <p>L’ANSES évalue les effets éventuels des champs électromagnétiques sur la santé, en vue d’éclairer les
+            décisions
+            publiques. L’Agence a en particulier rendu des avis sur les effets sur la santé de la 5G, des lignes haute
+            tension, des scanners corporels ou encore des diodes électroluminescentes
+        </p>
+        <h3>Ville de Lyon</h3>
+        <p>La ville (de Lyon), service santé-environnement :
+            Assure suivi du dispositif de charte téléphonie mobile
+            Assure le suivi du déploiement des émetteurs
+            Effectue recensement via mesures (établissements sensibles ou dispositif anfr)
+            Est dépositaires des dossiers d'information opérateur
+        </p>
+        <h3>Europe</h3>
+        <p>La recommandation 1999/519/CE du Conseil du 12 juillet 1999 relative à la limitation de l’exposition du
+            public
+            aux champs électromagnétiques (de 0 Hz à 300 GHz) est fondée sur les travaux de la Commission Internationale
+            de
+            Protection Contre les Rayonnements Non Ionisants (ICNIRP) qui a proposé des valeurs limites d'exposition des
+            personnes aux champs électromagnétiques en 1998 ». (Ministère de la santé, fiche). Aujourd'hui les seuils
+            limites en vigueur en France sont toujours ceux définis par l'ICNIRP en 1998 sur la base des seuls effets
+            thermiques et pour des communications de 6 minutes.</p>
+
+
+        <h2 class="titre-page2">Le matériel utilisé</h3>
+            <p>Pour nos campagnes de mesure dans le quartier de la Croix-Rousse, nous avons utilisé le matériel suivant
+                : </p>
+            <h3>
+                Le CORNET® "ED85EXPlus5"
+            </h3>
+            <img src="https://imgs.search.brave.com/ju-qUxEuz5brmrwB6kk_-pO3SivQtNuX2XO5M5JMot0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/Z2VvdGVsbHVyaXF1/ZS5mci83MDU0LW1l/ZGl1bV9kZWZhdWx0/L21lc3VyZXVyLW9u/ZGVzLWVsZWN0cm9t/YWduZXRpcXVlcy1j/b3JuZXQtZWQtODVl/eHBsdXM1Zy5qcGc"
+                height="200"></img>
+            <br>Il permet de mesurer :
+            <ul>
+                <li>Les champs de haute-fréquence de 800MHz à 6 GHz (étendue de 600MHz à 8GHz avec une antenne
+                    optionnelle)
+                </li>
+                <li>Les champs magnétiques basses fréquences (BF) de 50Hz à 10 KHz.</li>
+            </ul>
+            <h3>
+                Le TES-92 "AC ElectroSmog Meter"
+            </h3>
+            <img src="https://imgs.search.brave.com/8xksafOK9cwd7pNlDHHDv9fDykHRYv8y6Lvl4nXh29k/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/dGVzLmNvbS50dy9p/bWcvUHJvZHVjdC85/Mi0yKDMpLmpwZw"
+                height="200"></img>
+            <br>Ses principales acarctéristiques :
+            <ul>
+                <li>Mesure les champs de haute-fréquence uniquement, de 50MHz à 3.5 GHz
+                <li>Permet de mesurer les REM sur 3 axes, ou d'interpoler une valeur unique</li>
+            </ul>
+    </div>
+</div>
+<!-- <script src="data/sidebar-v2-master/js/leaflet-sidebar.js"></script>
+    <script src="js/main.js"></script> -->
+<!-- <script src="js/addressAutocomplete.js"></script>
+    <script src="js/modal.js"></script> -->
+<script src=" {{ url_for('static', filename='static_theorique/js/main.js') }}"></script>
+<script src=" {{ url_for('static', filename='static_theorique/js/modal.js') }}"></script>
+<script src=" {{ url_for('static', filename='static_theorique/js/addressAutocomplete.js') }}"></script>
+
+{% endblock %}

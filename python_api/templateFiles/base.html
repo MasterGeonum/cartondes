@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+  <script type="text/javascript" src=" {{ url_for('static', filename='js/leaflet-sidebar.js') }}"></script>
+  <link rel="stylesheet" href=" {{ url_for('static', filename='css/leaflet-sidebar.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <title>Cart'Ondes</title>
+</head>
+
+<body>
+  <nav id="navbar">
+    <a href="http://localhost:1234/">
+      <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="logo" width="40" />
+    </a>
+    <ul id="navbar-items">
+      <li class="navbar-item bonjour">
+        {% if session['nom_utilisateur'] %} Bonjour
+        <b>{{ session['nom_utilisateur']|title }}</b>. {% endif %}Bienvenue
+        sur Cart'Ondes
+      </li>
+      <!-- <li class="navbar-item">
+          <a href="http://localhost:1234/"> Accueil</a>
+        </li> -->
+      <li class="navbar-item">
+        <a href="http://localhost:1234/informations"> De quoi parle-t-on ?</a>
+      </li>
+      <li class="navbar-item">
+        <a href="http://localhost:1234/expositionTheorique">
+          Exposition électromagnétique</a>
+      </li>
+      <li class="navbar-item">
+        <a href="http://localhost:1234/expositionMesuree">
+          Balades électromagnétiques</a>
+      </li>
+
+      <li class="navbar-item login-logout">
+        {% if session['nom_utilisateur'] %}
+        <a href="{{ url_for('logout') }}">Se déconnecter</a>
+        {% else %}
+        <a href="{{ url_for('login') }}">Se connecter</a>
+        {% endif %}
+      </li>
+    </ul>
+  </nav>
+  <!-- <div id="container"> -->
+  {% block content %} {% endblock %}
+
+  <!-- </div> -->
+  <footer>
+    <span id="footer-child">
+      Développé par Florian Cosse, Vistel Tchako et Dominique Le Gal (Master
+      Geonum) avec la collaboration de Ania Benfrid et Yllona Malerba (Master
+      Sentinelles).
+      avec les bibliothèques Javascript : Leaflet, Chart.js, Turf.js
+          </span>
+  </footer>
+</body>
+
+</html>

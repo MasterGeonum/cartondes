@@ -1,0 +1,478 @@
+@font-face {
+  font-family: 'Inter';
+  /* Nom de la police */
+  src: url('/staticFiles/fonts/Inter-VariableFont_slnt-wght.ttf') format('truetype');
+  /* Chemin vers le fichier de police */
+  /* Vous pouvez également spécifier d'autres formats de police comme woff, woff2, etc., pour une meilleure compatibilité avec les navigateurs */
+}
+
+
+html {
+  font-family: 'Inter' !important;
+}
+
+/* 
+#map {
+  height: 100vh;
+  width: 100%;
+} */
+
+body {
+  margin: 0;
+}
+
+.lorem {
+  color: #303030;
+}
+
+.sidebar-tabs>li.active,
+.sidebar-tabs>ul>li.active {
+  background-color: #6bbaa3 !important;
+}
+
+.sidebar-header {
+  background-color: #6bbaa3 !important;
+
+}
+
+.sidebar-carte {
+  border: 1px solid black;
+  min-height: fit-content;
+  height: 330px;
+}
+
+.siderbar-titre-liste {
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #4fa48c;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#histoireName,
+#histoireDescription {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #4fa48c;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.submit-btn {
+  background-color: #6bbaa3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #4fa48c;
+}
+
+.submit-btn:focus {
+  outline: none;
+}
+
+.cancel-btn {
+  background-color: #f66548;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #de4a2d;
+}
+
+.cancel-btn:focus {
+  outline: none;
+}
+
+
+.filter-button {
+  background-color: #6bbaa3;
+  /* Bleu foncé */
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin: 10px 5px;
+}
+
+.filter-button:hover {
+  background-color: #6bbaa3;
+}
+
+.filter-button:active {
+  background-color: #6bbaa3;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 3px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  height: 70px;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    /* Largeur de la barre de défilement */
+    background-color: #ddd;
+    /* Couleur du fond */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #6bbaa3;
+    /* Couleur du curseur */
+    border-radius: 4px;
+    /* Bordure arrondie */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #6bbaa3;
+    /* Couleur du curseur au survol */
+  }
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #6bbaa3;
+}
+
+/* Style pour les options de sélection */
+.filter-select option {
+  padding: 5px;
+  font-size: 10px;
+}
+
+.filter-select::-webkit-scrollbar {
+  width: 8px;
+  /* Largeur de la barre de défilement */
+  background-color: #ddd;
+  /* Couleur du fond */
+}
+
+.filter-select::-webkit-scrollbar-thumb {
+  background-color: #6bbaa3;
+  /* Couleur du curseur */
+  border-radius: 4px;
+  /* Bordure arrondie */
+}
+
+.filter-select::-webkit-scrollbar-thumb:hover {
+  background-color: #6bbaa3;
+  /* Couleur du curseur au survol */
+}
+
+.radio-group {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  max-height: 150px;
+  /* Limitez la hauteur de la zone */
+  overflow-y: auto;
+  /* Activez la barre de défilement verticale en cas de dépassement */
+}
+
+.radio-group h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.radio-input {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.radio-input label {
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.radio-input input[type="radio"] {
+  margin-right: 5px;
+}
+
+.radio-input input[type="radio"]:checked+label {
+  color: #6bbaa3;
+  /* Couleur du texte lorsqu'il est sélectionné */
+}
+
+.radio-input input[type="radio"]:focus+label {
+  outline: none;
+  border-color: #6bbaa3;
+  /* Couleur de la bordure lorsqu'il est sélectionné */
+}
+
+.radio-group input[type="radio"],
+.radio-group label {
+  cursor: pointer;
+  /* Définir le curseur comme une main au survol */
+}
+
+/* Style pour la scrollbar */
+.radio-group::-webkit-scrollbar {
+  width: 8px;
+  /* Largeur de la barre de défilement */
+  background-color: #f5f5f5;
+  /* Couleur du fond */
+}
+
+/* Style pour le curseur de la scrollbar */
+.radio-group::-webkit-scrollbar-thumb {
+  background-color: #6bbaa3;
+  /* Couleur du curseur */
+  border-radius: 4px;
+  /* Bordure arrondie */
+}
+
+/* Style pour le curseur de la scrollbar au survol */
+.radio-group::-webkit-scrollbar-thumb:hover {
+  background-color: #6bbaa3;
+  /* Couleur du curseur au survol */
+}
+
+
+/* Style de la fenêtre modale */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  border-radius: 10px;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
+}
+
+/* Style pour le bouton de fermeture */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Style pour le formulaire de connexion dans la fenêtre modale */
+.form-group {
+  margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  background-color: #6bbaa3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #43a287;
+}
+
+.legende-container {
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
+  position: absolute;
+  z-index: 500;
+  right: 10px;
+  bottom: 25px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, .95);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+#sites_antennes,
+#Batiments {
+  display: none;
+}
+
+.legende-container p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#icone-legende {
+  width: 60px;
+  display: block;
+  margin-right: 5px;
+}
+
+.icone-batiment {
+  background-color: rgba(107, 186, 163, .3);
+  border: 1px solid #6bbaa3;
+  height: 20px;
+  margin-right: 8px;
+  width: 35px !important;
+}
+
+.liste-icone {
+  list-style-type: none;
+  /* Supprimer les puces de liste */
+  padding: 0;
+  margin-top: 5px;
+  margin-bottom: 5px
+}
+
+.liste-icone li {
+  display: flex;
+  align-items: center;
+}
+
+.icone-antenne1 {
+  background: url(../dataset/images/pin2.png) no-repeat scroll 0 0 transparent;
+  background-size: 10px;
+  background-position: center;
+  height: 20px;
+}
+
+.icone-antenne2 {
+  background: url(../dataset/images/pin2.png) no-repeat scroll 0 0 transparent;
+  background-size: 30px;
+  background-position: center;
+  height: 40px;
+}
+
+.icone-antenne3 {
+  background: url(../dataset/images/pin2.png) no-repeat scroll 0 0 transparent;
+  background-size: 50px;
+  background-position: center;
+  height: 60px;
+}
+
+.radio-input {
+  display: flex;
+  /* Utiliser un affichage en ligne */
+  align-items: center;
+  /* Aligner les éléments verticalement */
+}
+
+.radio-input img {
+  margin-left: auto;
+  /* Déplacer l'image vers la droite */
+}
+
+/* Style pour le conteneur du tableau */
+.table-group {
+  display: block;
+  width: 100%;
+  /* Largeur fixe de 100px */
+  height: 200px;
+  /* Hauteur fixe de 100px */
+  overflow: auto;
+  /* Ajoute des barres de défilement si nécessaire */
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+/* Style pour le tableau */
+#dataTable {
+  width: 100%;
+  /* Largeur du tableau égale à 100% du conteneur */
+  height: 100%;
+  /* Hauteur du tableau égale à 100% du conteneur */
+  border-collapse: collapse;
+  /* Fusionne les bordures des cellules */
+}
+
+/* Style pour les cellules du tableau */
+#dataTable th,
+#dataTable td {
+  border: 1px solid #ddd;
+  /* Bordures des cellules */
+  padding: 2px;
+  /* Espacement interne des cellules */
+  text-align: left;
+  /* Alignement du texte à gauche */
+}
+
+/* Style pour les en-têtes de colonne */
+#dataTable th {
+  background-color: #f2f2f2;
+  /* Couleur de fond des en-têtes de colonne */
+  font-size: 12px;
+}
+
+#dataTable td {
+  font-size: 12px;
+}
+
+.point-tooltip {
+  background-color: white;
+  /* Couleur de fond de la bulle */
+  border: 1px solid blue;
+  /* Bordure bleue d'épaisseur 1px */
+  border-radius: 100%;
+  /* Rayon de bordure pour arrondir les coins */
+  font-weight: bold;
+  /* Style de la police */
+  font-size: 12px;
+  /* Taille de la police */
+}
