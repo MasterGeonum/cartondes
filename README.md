@@ -55,4 +55,5 @@ Cette interface permet de se placer
 
 ### Exposition mesurée
 Cette interface permet d'afficher des *histoires*. Elles sont constituées de mesures ayant une thématique précise (l'étude d'un site à une heure donnée, un parcours particulier, ...). Il est possible de sélectionner une histoire à afficher et de voir sur la carte le parcours suivi par l'observateur et la valeur des mesures d'exposition par deux appareils différents pour chacun des points de mesure.
+
 Il est également possible, pour un utilisateur authentifié, d'ajouter des données en important un fichier kml constitué des points d'une histoire. Une fois le fichier chargé, il est possible de renseigner les valeurs mesurées par les deux appareils aux différents points, d'enregistrer ces données en base et de les afficher.
