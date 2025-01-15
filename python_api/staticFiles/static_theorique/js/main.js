@@ -307,8 +307,8 @@ let wmsbati = L.tileLayer.wms('/geoserver/cartondes/wms?service=WMS', {
   minZoom: 14
 }).addTo(batiment);
 
-loadGeojson("/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asites_antennes&outputFormat=application%2Fjson", sites_antennes, style["sites_antennes"])
-loadGeojson("/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Alimites_lyon&maxFeatures=50&outputFormat=application%2Fjson", lyon, style["limite lyon"])
+loadGeojson("geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asites_antennes&outputFormat=application%2Fjson", sites_antennes, style["sites_antennes"])
+loadGeojson("geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Alimites_lyon&maxFeatures=50&outputFormat=application%2Fjson", lyon, style["limite lyon"])
 
 L.control.scale().addTo(map);
 

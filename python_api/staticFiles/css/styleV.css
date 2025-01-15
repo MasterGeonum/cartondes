@@ -226,7 +226,7 @@ h3 {
 }
 
 #recherche {
-    background: url("/staticFiles/img/search.svg") no-repeat scroll 0 0 transparent;
+    background: url("staticFiles/img/search.svg") no-repeat scroll 0 0 transparent;
     border-radius: 100px;
     z-index: 2;
     border: 1px solid lightgrey;
@@ -238,7 +238,7 @@ h3 {
 }
 
 .marker-search {
-    background: url("/staticFiles/img/crosshair.png") no-repeat scroll 0 0 transparent;
+    background: url("staticFiles/img/crosshair.png") no-repeat scroll 0 0 transparent;
     cursor: pointer;
     font-weight: bold;
     background-size: 20px;

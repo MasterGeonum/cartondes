@@ -122,8 +122,8 @@ let mesure = L.layerGroup();
 let site_a = L.layerGroup();
 let batiment_m = L.layerGroup();
 
-let point_mesure = "/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson";
-let site = "/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asite&outputFormat=application%2Fjson";
+let point_mesure = "geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson";
+let site = "geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asite&outputFormat=application%2Fjson";
 let wmsbati = L.tileLayer.wms('/geoserver/cartondes/wms?service=WMS', {
     layers: 'cartondes:batiment',
     format: 'image/png',
@@ -219,7 +219,7 @@ function createDropdown(values, id, label, historyMap) {
             let radioInput = $(`<div class="radio-input">
                                     <input type="radio" id="${value.replace(/\s+/g, '_').toLowerCase()}" name="${id}" value="${value}">
                                     <label for="${value.replace(/\s+/g, '_').toLowerCase()}">${value}</label>
-                                    <img src="/staticFiles/img/mes${history}.png" alt="${value}" class="radio-icon" style="height: 20px; width: 20px;"> <!-- Image -->
+                                    <img src="staticFiles/img/mes${history}.png" alt="${value}" class="radio-icon" style="height: 20px; width: 20px;"> <!-- Image -->
                                 </div>`);
             radioGroup.append(radioInput);
         });
@@ -471,7 +471,7 @@ async function createChart(geojsonData) {
 }
 
 // Exemple d'utilisation
-let filtre_point = "/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson";
+let filtre_point = "geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson";
 loadFeatures(filtre_point);
 
 document.addEventListener('DOMContentLoaded', function () {

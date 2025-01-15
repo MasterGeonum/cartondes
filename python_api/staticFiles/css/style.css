@@ -208,7 +208,7 @@ h3 {
 
 #removeLayersBtn {
     grid-area: "removeLayersBtn";
-    background: url("/staticFiles/img/delete.png") no-repeat scroll 0 0 transparent;
+    background: url("staticFiles/img/delete.png") no-repeat scroll 0 0 transparent;
     cursor: pointer;
     font-weight: bold;
     background-size: 20px;
@@ -227,7 +227,7 @@ h3 {
 
 .marker-search {
     grid-area: "marker-search";
-    background: url("/staticFiles/img/crosshair.png") no-repeat scroll 0 0 transparent;
+    background: url("staticFiles/img/crosshair.png") no-repeat scroll 0 0 transparent;
     cursor: pointer;
     font-weight: bold;
     background-size: 20px;
