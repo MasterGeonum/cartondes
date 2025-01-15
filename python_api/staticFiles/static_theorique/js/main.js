@@ -165,7 +165,7 @@ function logFeatureProperties(feature, distance) {
     tableTab.click();
   }
 
-  let url = `http://127.0.0.1:1234/batiment/${id_site}/${distance}`;
+  let url = `/batiment/${id_site}/${distance}`;
   fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -300,15 +300,15 @@ let batiment = L.layerGroup();
 let sites_antennes = L.layerGroup();
 let lyon = L.layerGroup().addTo(map);
 
-let wmsbati = L.tileLayer.wms('http://localhost:8080/geoserver/cartondes/wms?service=WMS', {
+let wmsbati = L.tileLayer.wms('/geoserver/cartondes/wms?service=WMS', {
   layers: 'cartondes:batiment',
   format: 'image/png',
   transparent: true,
   minZoom: 14
 }).addTo(batiment);
 
-loadGeojson("http://localhost:8080/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asites_antennes&outputFormat=application%2Fjson", sites_antennes, style["sites_antennes"])
-loadGeojson("http://localhost:8080/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3ALimites_lyon&maxFeatures=50&outputFormat=application%2Fjson", lyon, style["limite lyon"])
+loadGeojson("/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asites_antennes&outputFormat=application%2Fjson", sites_antennes, style["sites_antennes"])
+loadGeojson("/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Alimites_lyon&maxFeatures=50&outputFormat=application%2Fjson", lyon, style["limite lyon"])
 
 L.control.scale().addTo(map);
 

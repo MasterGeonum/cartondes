@@ -36,7 +36,7 @@ map.createPane('labels');
 map.getPane('labels').style.zIndex = 400;
 
 let ortho = L.layerGroup();
-let url_antenne = "http://localhost:8080/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3AAntennes&outputFormat=application%2Fjson"
+let url_antenne = "/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3AAntennes&outputFormat=application%2Fjson"
 
 let osm = L.tileLayer(
   "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png",
@@ -107,10 +107,10 @@ let batiment = L.layerGroup();
 let sites_antennes = L.layerGroup();
 let lyon = L.layerGroup().addTo(map);
 
-loadGeojson("http://localhost:8080/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asites_antennes&outputFormat=application%2Fjson", sites_antennes, style["sites_antennes"], popup["sites_antennes"])
-loadGeojson("http://localhost:8080/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Alimites_lyon&outputFormat=application%2Fjson", lyon, style["limite lyon"])
+loadGeojson("/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asites_antennes&outputFormat=application%2Fjson", sites_antennes, style["sites_antennes"], popup["sites_antennes"])
+loadGeojson("/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Alimites_lyon&outputFormat=application%2Fjson", lyon, style["limite lyon"])
 
-let wmsbati = L.tileLayer.wms('http://localhost:8080/geoserver/cartondes/wms?service=WMS', {
+let wmsbati = L.tileLayer.wms('/geoserver/cartondes/wms?service=WMS', {
   layers: 'cartondes:batiments',
   format: 'image/png',
   transparent: true,

@@ -27,6 +27,7 @@ Publier les couches :
 - Sites_antennes
 - batiment
 - point_histoire
+- site
 
 ### Exécuter
 python app.py

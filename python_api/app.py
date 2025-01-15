@@ -1,4 +1,6 @@
 import psycopg2
+import os
+
 from pyproj import Proj, Transformer
 
 from flask import Flask, request, jsonify, render_template, redirect, url_for, session
@@ -18,8 +20,7 @@ def infos():
     return render_template('informations.html')
 
 utilisateurs = [
-    { "nom": "sera", "mdp": "1234"},
-    { "nom": "dom", "mdp": "dom"}
+    { "nom": os.environ['CARTONDES_USER'], "mdp": os.environ['CARTONDES_PASSWORD']},
 ]
 
 def recherche_utilisateur(nom_utilisateur, mot_de_passe):
@@ -84,7 +85,7 @@ def addStory():
     print(donnees)
     
     # Création d'une histoire avec récupération id
-    connection = psycopg2.connect("dbname='cartondes' user='cartondes_dba' host='localhost' password='Cartondes#1234'")
+    connection = psycopg2.connect(f"dbname='cartondes' user='cartondes_dba' host={os.environ['POSTGRES_HOST']} password={os.environ['POSTGRES_PASSWORD']}")
     nomh = request.form.get('histoireName')
     desch  = request.form.get('histoireDescription')
     nb_points = int((len(list(request.form.keys())) - 3) / 4) # champs (nom, description, fichier) exclus 
@@ -130,7 +131,7 @@ def addStory():
 SELECT_ALL_APPAREILS = "SELECT * FROM referentiel.appareil;"
 @app.route("/appareil", methods=["GET"])
 def get_all_appareils():
-    connection = psycopg2.connect("dbname='cartondes' user='cartondes_dba' host='localhost' password='Cartondes#1234'")
+    connection = psycopg2.connect(f"dbname='cartondes' user='cartondes_dba' host={os.environ['POSTGRES_HOST']} password={os.environ['POSTGRES_PASSWORD']}")
 
     with connection:
         with connection.cursor() as cursor:
@@ -147,7 +148,7 @@ def get_all_appareils():
 # get one
 @app.route("/appareil/<int:appareil_id>", methods=["GET"])
 def get_appareil(appareil_id):
-    connection = psycopg2.connect("dbname='cartondes' user='cartondes_dba' host='localhost' password='Cartondes#1234'")
+    connection = psycopg2.connect(f"dbname='cartondes' user='cartondes_dba' host={os.environ['POSTGRES_HOST']} password={os.environ['POSTGRES_PASSWORD']}")
     with connection:
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM referentiel.appareil WHERE id_appareil = %s", (appareil_id,)) 
@@ -161,7 +162,7 @@ def get_appareil(appareil_id):
 INSERT_APPAREIL_RETURN_ID = "INSERT INTO referentiel.appareil (description_appareil) VALUES (%s) RETURNING id_appareil;"
 @app.route("/appareil", methods=["POST"])
 def create_appareil():
-    connection = psycopg2.connect("dbname='cartondes' user='cartondes_dba' host='localhost' password='Cartondes#1234'")
+    connection = psycopg2.connect(f"dbname='cartondes' user='cartondes_dba' host={os.environ['POSTGRES_HOST']} password={os.environ['POSTGRES_PASSWORD']}")
     data = request.get_json()
     desc = data["description_appareil"]
     with connection:
@@ -174,7 +175,7 @@ def create_appareil():
 DELETE_APPAREIL_by_id="DELETE FROM referentiel.appareil WHERE id_appareil = %s;"
 @app.route("/appareil/<int:appareil_id>", methods=["DELETE"])
 def delete_user(appareil_id):
-    connection = psycopg2.connect("dbname='cartondes' user='cartondes_dba' host='localhost' password='Cartondes#1234'")
+    connection = psycopg2.connect(f"dbname='cartondes' user='cartondes_dba' host={os.environ['POSTGRES_HOST']} password={os.environ['POSTGRES_PASSWORD']}")
     with connection:
         with connection.cursor() as cursor:
             cursor.execute("DELETE FROM referentiel.appareil WHERE id_appareil = %s", (appareil_id,))
@@ -189,7 +190,7 @@ def delete_user(appareil_id):
 SELECT_ALL_POINTS = "SELECT id_point_mesure, description_point, ST_AsText(geom) as geom, ST_X(ST_Transform(geom, 4326)) as long, ST_Y(ST_Transform(geom, 4326)) as lat FROM referentiel.point_mesure;"
 @app.route("/pointMesure", methods=["GET"])
 def get_all_points():
-    connection = psycopg2.connect("dbname='cartondes' user='cartondes_dba' host='localhost' password='Cartondes#1234'")
+    connection = psycopg2.connect(f"dbname='cartondes' user='cartondes_dba' host={os.environ['POSTGRES_HOST']} password={os.environ['POSTGRES_PASSWORD']}")
     with connection:
         with connection.cursor() as cursor:
             cursor.execute(SELECT_ALL_POINTS)
@@ -206,7 +207,7 @@ def get_all_points():
 INSERT_POINTMESURE_RETURN_ID = "INSERT INTO referentiel.point_mesure (geom, description_point_mesure) VALUES (ST_GeomFromText(%s), %s) RETURNING id_point_mesure;"
 @app.route("/pointMesure", methods=["POST"])
 def create_point():
-    connection = psycopg2.connect("dbname='cartondes' user='cartondes_dba' host='localhost' password='Cartondes#1234'")
+    connection = psycopg2.connect(f"dbname='cartondes' user='cartondes_dba' host={os.environ['POSTGRES_HOST']} password={os.environ['POSTGRES_PASSWORD']}")
     data = request.get_json()
     desc = data["description_point"]
     lat = data["geometry"]["coordinates"][0][0]
@@ -227,7 +228,7 @@ def create_point():
 SELECT_ALL_HISTOIRE = "SELECT * FROM referentiel.histoire;"
 @app.route("/histoire", methods=["GET"])
 def get_all_histoires():
-    connection = psycopg2.connect("dbname='cartondes' user='cartondes_dba' host='localhost' password='Cartondes#1234'")
+    connection = psycopg2.connect(f"dbname='cartondes' user='cartondes_dba' host={os.environ['POSTGRES_HOST']} password={os.environ['POSTGRES_PASSWORD']}")
     with connection:
         with connection.cursor() as cursor:
             cursor.execute(SELECT_ALL_HISTOIRE)
@@ -244,7 +245,7 @@ def get_all_histoires():
 INSERT_HISTOIRE_RETURN_ID = "INSERT INTO referentiel.histoire (description_histoire) VALUES (%s) RETURNING id_histoire;"
 @app.route("/histoire", methods=["POST"])
 def create_histoire():
-    connection = psycopg2.connect("dbname='cartondes' user='cartondes_dba' host='localhost' password='Cartondes#1234'")
+    connection = psycopg2.connect(f"dbname='cartondes' user='cartondes_dba' host={os.environ['POSTGRES_HOST']} password={os.environ['POSTGRES_PASSWORD']}")
     data = request.get_json()
     desc = data["description_histoire"]
     
@@ -267,7 +268,7 @@ SELECT_BATIMENTS_SITE = """
 @app.route("/batiment/<int:site_id>/<int:distance>", methods=["GET"])
 def get_batiments_around_site(site_id, distance):
 
-    conn = psycopg2.connect("dbname='cartondes' user='cartondes_dba' host='localhost' password='Cartondes#1234'")
+    conn = psycopg2.connect(f"dbname='cartondes' user='cartondes_dba' host={os.environ['POSTGRES_HOST']} password={os.environ['POSTGRES_PASSWORD']}")
 
     with conn:
         with conn.cursor() as cursor:

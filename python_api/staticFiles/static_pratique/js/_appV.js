@@ -136,13 +136,13 @@ let mesure = L.layerGroup();
 let batiment_m = L.layerGroup();
 let site_a = L.layerGroup();
 
-let point_mesure = "http://localhost:8080/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson"
-let site = "http://localhost:8080/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asites_antennes&outputFormat=application%2Fjson"
+let point_mesure = "/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson"
+let site = "/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asites_antennes&outputFormat=application%2Fjson"
 
 load_file(point_mesure, mesure);
 load_file(site, site_a); // Ajoutez site_a comme une couche de site
 
-let wmsbati = L.tileLayer.wms('http://localhost:8080/geoserver/cartondes/wms?service=WMS', {
+let wmsbati = L.tileLayer.wms('/geoserver/cartondes/wms?service=WMS', {
     layers: 'cartondes:batiment',
     format: 'image/png',
     transparent: true,
@@ -509,7 +509,7 @@ async function createChart(geojsonData) {
 
 
 // Exemple d'utilisation
-let geoserverUrl = "http://localhost:8080/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson";
+let geoserverUrl = "/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson";
 loadFeatures(geoserverUrl);
 
 

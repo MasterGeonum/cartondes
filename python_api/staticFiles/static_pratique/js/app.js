@@ -122,9 +122,9 @@ let mesure = L.layerGroup();
 let site_a = L.layerGroup();
 let batiment_m = L.layerGroup();
 
-let point_mesure = "http://localhost:8080/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson";
-let site = "http://localhost:8080/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asite&outputFormat=application%2Fjson";
-let wmsbati = L.tileLayer.wms('http://localhost:8080/geoserver/cartondes/wms?service=WMS', {
+let point_mesure = "/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson";
+let site = "/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Asite&outputFormat=application%2Fjson";
+let wmsbati = L.tileLayer.wms('/geoserver/cartondes/wms?service=WMS', {
     layers: 'cartondes:batiment',
     format: 'image/png',
     transparent: true,
@@ -471,7 +471,7 @@ async function createChart(geojsonData) {
 }
 
 // Exemple d'utilisation
-let filtre_point = "http://localhost:8080/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson";
+let filtre_point = "/geoserver/cartondes/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=cartondes%3Apoint_histoire&outputFormat=application%2Fjson";
 loadFeatures(filtre_point);
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -618,7 +618,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             body: formData
         };
-        var apiUrl = 'http://localhost:1234/addRoute';
+        var apiUrl = '/addRoute';
 
         fetch(apiUrl, requestOptions)
             .then(response => {
